@@ -104,11 +104,13 @@ export default function Home() {
                   variant="secondary"
                 />
                 <Button
-                  href="https://linkedin.com/in/abrarikramaputra"
-                  prefixIcon="linkedin" 
-                  size="m" 
+                  href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
+                  target="_blank"
                   variant="secondary"
-                />
+                  size="m"
+                  prefixIcon="linkedin">
+                  LinkedIn
+                </Button>
               </Flex>
               <Button
                 id="contactMe"
@@ -323,8 +325,11 @@ export default function Home() {
                 Email Me
               </Button>
               <Button
-                href="https://linkedin.com/in/abrarikramaputra"
-                variant="secondary">
+                href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
+                target="_blank"
+                variant="secondary"
+                size="m"
+                prefixIcon="linkedin">
                 LinkedIn
               </Button>
               <Button

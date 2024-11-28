@@ -74,6 +74,21 @@ async function main() {
     },
   });
 
+  const academix = await prisma.project.create({
+    data: {
+      title: 'Academix',
+      description: 'Academic management system built with MERN Stack (MongoDB, Express.js, React, Node.js). Features include student management, course scheduling, grade tracking, and attendance monitoring with real-time updates.',
+      year: 2023,
+      image: null,
+      demoUrl: null,
+      githubUrl: 'https://github.com/0537ch/academix',
+      featured: true,
+      order: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+  });
+
   const portfolio = await prisma.project.create({
     data: {
       title: 'Personal Portfolio',
@@ -83,26 +98,9 @@ async function main() {
       demoUrl: 'https://pfolio-0537ch.vercel.app',
       githubUrl: 'https://github.com/0537ch/pfolio',
       featured: true,
-      order: 2,
+      order: 3,
       createdAt: new Date(),
       updatedAt: new Date()
-    },
-  });
-
-  await prisma.project.create({
-    data: {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce platform built with Next.js, Node.js, and MongoDB. Features include user authentication, product management, and payment integration.',
-      year: 2023,
-      featured: true,
-      order: 3,
-      technologies: {
-        connect: [
-          { id: nextjs.id },
-          { id: nodejs.id },
-          { id: typescript.id },
-        ],
-      },
     },
   });
 
@@ -122,6 +120,8 @@ async function main() {
       },
     },
   });
+
+  console.log('Database has been seeded. 🌱');
 }
 
 main()
