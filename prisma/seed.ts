@@ -59,13 +59,43 @@ async function main() {
   });
 
   // Create projects
+  const onlineShop = await prisma.project.create({
+    data: {
+      title: 'Online Shop LRV',
+      description: 'E-commerce platform built with Laravel, featuring product management, shopping cart, and secure payment integration. Includes user authentication, admin dashboard, and order tracking.',
+      year: 2023,
+      image: 'https://raw.githubusercontent.com/0537ch/onlineshoplrv/main/screenshot.png',
+      demoUrl: 'https://onlineshop-lrv.vercel.app',
+      githubUrl: 'https://github.com/0537ch/onlineshoplrv',
+      featured: true,
+      order: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+  });
+
+  const portfolio = await prisma.project.create({
+    data: {
+      title: 'Personal Portfolio',
+      description: 'Modern portfolio website built with Next.js, featuring a beautiful UI with Framer Motion animations, project showcase, and contact form. Includes server-side rendering and PostgreSQL database.',
+      year: 2024,
+      image: null,
+      demoUrl: 'https://pfolio-0537ch.vercel.app',
+      githubUrl: 'https://github.com/0537ch/pfolio',
+      featured: true,
+      order: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+  });
+
   await prisma.project.create({
     data: {
       title: 'E-Commerce Platform',
       description: 'A full-stack e-commerce platform built with Next.js, Node.js, and MongoDB. Features include user authentication, product management, and payment integration.',
       year: 2023,
       featured: true,
-      order: 1,
+      order: 3,
       technologies: {
         connect: [
           { id: nextjs.id },
@@ -82,7 +112,7 @@ async function main() {
       description: 'A collaborative task management application with real-time updates. Includes features like task assignment, due dates, and team collaboration.',
       year: 2023,
       featured: true,
-      order: 2,
+      order: 4,
       technologies: {
         connect: [
           { id: react.id },

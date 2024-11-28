@@ -1,32 +1,26 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Heading, Text, Flex, Button, Grid, LetterFx, Arrow } from '@/once-ui/components';
 import { motion } from 'framer-motion';
 import styles from './styles.module.css';
 import timelineStyles from './timeline.module.css';
 import { useScrollProgress } from './hooks/useScrollProgress';
 
-const projects = [
-  {
-    year: '2023',
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce platform built with Next.js, Node.js, and MongoDB. Features include user authentication, product management, and payment integration.',
-    technologies: ['Next.js', 'Node.js', 'MongoDB']
-  },
-  {
-    year: '2022',
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates. Includes features like task assignment, due dates, and team collaboration.',
-    technologies: ['React', 'Express', 'PostgreSQL']
-  },
-  {
-    year: '2021',
-    title: 'AI Image Generator',
-    description: 'An AI-powered image generation platform that creates unique artwork based on text descriptions. Integrates with OpenAI\'s DALL-E API.',
-    technologies: ['React', 'Node.js', 'OpenAI API']
-  }
-];
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  year: number;
+  image: string | null;
+  demoUrl: string | null;
+  githubUrl: string | null;
+  featured: boolean;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+  technologies: string[];
+};
 
 export default function Home() {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -34,6 +28,15 @@ export default function Home() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    // Fetch projects when component mounts
+    fetch('/api/projects')
+      .then(res => res.json())
+      .then(data => setProjects(data))
+      .catch(error => console.error('Error fetching projects:', error));
+  }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -225,26 +228,27 @@ export default function Home() {
               ref={timelineRef}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseUp}>
+              onMouseLeave={handleMouseUp}
+              onMouseMove={handleMouseMove}>
               <motion.div 
-                className={timelineStyles.timeline}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}>
+                className={timelineStyles.timeline}>
                 {projects.map((project, index) => (
                   <motion.div
-                    key={project.title}
-                    className={timelineStyles.projectCard}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}>
-                    <Heading variant="heading-strong-s">{project.title}</Heading>
+                    key={project.id}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.5,
+                      delay: index * 0.2
+                    }}
+                    className={timelineStyles.projectCard}>
+                    <Text color="medium" style={{ fontSize: '14px', marginBottom: '8px' }}>{project.year}</Text>
+                    <Heading variant="heading-strong-m">{project.title}</Heading>
                     <Text color="medium" style={{ marginTop: '8px' }}>
                       {project.description}
                     </Text>
                     <div style={{ display: 'flex', gap: '8px', marginTop: '16px', flexWrap: 'wrap' }}>
-                      {project.technologies.map((technology, index) => (
+                      {project.technologies?.map((technology, index) => (
                         <Text 
                           color="medium" 
                           className={styles.techTag} 
@@ -253,7 +257,32 @@ export default function Home() {
                         </Text>
                       ))}
                     </div>
-                    <div className={timelineStyles.year}>{project.year || '2023'}</div>
+                    <div style={{ 
+                      display: 'flex', 
+                      gap: '8px', 
+                      marginTop: '24px',
+                      justifyContent: 'flex-end' 
+                    }}>
+                      {project.demoUrl && (
+                        <Button
+                          href={project.demoUrl}
+                          target="_blank"
+                          variant="secondary"
+                          size="s">
+                          Demo
+                        </Button>
+                      )}
+                      {project.githubUrl && (
+                        <Button
+                          href={project.githubUrl}
+                          target="_blank"
+                          variant="secondary"
+                          size="s"
+                          prefixIcon="github">
+                          Code
+                        </Button>
+                      )}
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>

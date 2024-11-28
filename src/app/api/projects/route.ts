@@ -4,15 +4,8 @@ import { prisma } from '@/lib/prisma';
 export async function GET() {
   try {
     const projects = await prisma.project.findMany({
-      include: {
-        technologies: {
-          include: {
-            category: true
-          }
-        }
-      },
       orderBy: {
-        order: 'asc'
+        year: 'desc'
       }
     });
 
@@ -29,19 +22,20 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const json = await request.json();
+    const now = new Date();
+    
     const project = await prisma.project.create({
       data: {
         title: json.title,
         description: json.description,
-        year: json.year,
+        year: parseInt(json.year),
         image: json.image,
         demoUrl: json.demoUrl,
         githubUrl: json.githubUrl,
         featured: json.featured,
         order: json.order,
-        technologies: {
-          connect: json.technologies.map((id: string) => ({ id }))
-        }
+        createdAt: now,
+        updatedAt: now
       }
     });
 
