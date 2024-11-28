@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { Heading, Text, Flex, Button, Grid, LetterFx, Arrow } from '@/once-ui/components';
+import { SocialButton } from '@/once-ui/components/SocialButton';
 import { motion } from 'framer-motion';
 import styles from './styles.module.css';
 import timelineStyles from './timeline.module.css';
@@ -91,26 +92,21 @@ export default function Home() {
                 Full Stack Developer & Designer
               </Text>
               <Flex gap="m">
-                <Button
+                <SocialButton
                   href="https://github.com/0537ch"
-                  prefixIcon="github" 
-                  size="m" 
-                  variant="secondary"
+                  icon="github"
+                  label="GitHub"
                 />
-                <Button
+                <SocialButton
                   href="mailto:abrarikramaputra@gmail.com"
-                  prefixIcon="mail" 
-                  size="m" 
-                  variant="secondary"
+                  icon="mail"
+                  label="Email"
                 />
-                <Button
+                <SocialButton
                   href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
-                  target="_blank"
-                  variant="secondary"
-                  size="m"
-                  prefixIcon="linkedin">
-                  LinkedIn
-                </Button>
+                  icon="linkedin"
+                  label="LinkedIn"
+                />
               </Flex>
               <Button
                 id="contactMe"
@@ -318,25 +314,22 @@ export default function Home() {
             <Text color="medium" align="center">
               I'm always open to new opportunities and collaborations
             </Text>
-            <Flex gap="m">
-              <Button
+            <Flex gap="m" alignItems="center">
+              <SocialButton
                 href="mailto:abrarikramaputra@gmail.com"
-                variant="secondary">
-                Email Me
-              </Button>
-              <Button
+                icon="mail"
+                label="Email"
+              />
+              <SocialButton
                 href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
-                target="_blank"
-                variant="secondary"
-                size="m"
-                prefixIcon="linkedin">
-                LinkedIn
-              </Button>
-              <Button
+                icon="linkedin"
+                label="LinkedIn"
+              />
+              <SocialButton
                 href="https://github.com/0537ch"
-                variant="secondary">
-                GitHub
-              </Button>
+                icon="github"
+                label="GitHub"
+              />
             </Flex>
           </Flex>
         </Flex>
