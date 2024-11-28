@@ -19,11 +19,13 @@ import {
 	HiInformationCircle,
 	HiExclamationCircle,
 	HiCheckCircle,
+	HiEnvelope,
 } from "react-icons/hi2";
 
 import {
 	FaDiscord,
-	FaGithub
+	FaGithub,
+	FaLinkedin
 } from "react-icons/fa6";
 
 export const iconLibrary: Record<string, IconType> = {
@@ -44,6 +46,8 @@ export const iconLibrary: Record<string, IconType> = {
 	openLink: HiOutlineLink,
 	discord: FaDiscord,
 	github: FaGithub,
+	linkedin: FaLinkedin,
+	mail: HiEnvelope,
 	arrowUpRight: HiArrowUpRight,
 	minus: HiMiniMinus,
 	plus: HiMiniPlus,

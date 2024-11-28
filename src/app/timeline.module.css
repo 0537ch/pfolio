@@ -1,0 +1,145 @@
+.timelineContainer {
+    width: 100%;
+    overflow-x: auto;
+    padding: 80px 0;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+}
+
+.timelineContainer:active {
+    cursor: grabbing;
+}
+
+.timelineContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.timeline {
+    display: inline-flex;
+    min-width: max-content;
+    padding: 0 20%;
+    gap: 160px;
+    position: relative;
+    align-items: flex-start;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 180px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0.1) 80%,
+        transparent 100%
+    );
+}
+
+.projectCard {
+    width: 360px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center bottom;
+}
+
+.projectCard:hover {
+    transform: translateY(-12px) scale(1.02);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.projectCard::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.3)
+    );
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.projectCard::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    bottom: -68px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        0 0 0 4px rgba(255, 255, 255, 0.1),
+        0 0 20px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.projectCard:hover::after {
+    transform: translateX(-50%) scale(1.2);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 
+        0 0 0 6px rgba(255, 255, 255, 0.15),
+        0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+.year {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.projectCard:hover .year {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.progressBar {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.8)
+    );
+    border-radius: 3px;
+    transition: width 0.2s ease;
+}
