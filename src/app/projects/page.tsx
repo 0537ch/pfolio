@@ -28,7 +28,7 @@ export default function Projects() {
       .then(res => res.json())
       .then(data => {
         // Sort projects by year in descending order
-        const sortedProjects = data.sort((a: Project, b: Project) => b.year - a.year);
+        const sortedProjects = data.projects.sort((a: Project, b: Project) => b.year - a.year);
         setProjects(sortedProjects);
       })
       .catch(error => console.error('Error fetching projects:', error));

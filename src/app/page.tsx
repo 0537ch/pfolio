@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import styles from './styles.module.css';
 import timelineStyles from './timeline.module.css';
 import { useScrollProgress } from './hooks/useScrollProgress';
+import TechStack3D from './TechStack3D'; // Import the TechStack3D component
 
 type Project = {
   id: string;
@@ -32,11 +33,28 @@ export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    // Fetch projects when component mounts
+    // Fetch projects from database
     fetch('/api/projects')
-      .then(res => res.json())
-      .then(data => setProjects(data))
-      .catch(error => console.error('Error fetching projects:', error));
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data.projects && Array.isArray(data.projects)) {
+          // Sort projects by year in descending order
+          const sortedProjects = [...data.projects].sort((a, b) => b.year - a.year);
+          setProjects(sortedProjects);
+        } else {
+          console.error('Invalid projects data:', data);
+          setProjects([]);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching projects:', error);
+        setProjects([]);
+      });
   }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -73,53 +91,67 @@ export default function Home() {
           direction="column" justifyContent="center"
           fillWidth fillHeight padding="l" gap="l">
           <Flex
-            mobileDirection="column"
-            fillWidth gap="24">
-            <Flex
-              position="relative"
-              flex={4} gap="24" marginBottom="104"
-              direction="column">
-              <Heading
-                wrap="balance"
-                variant="display-strong-s">
-                <span className="font-code">
-                  <LetterFx trigger="instant">
-                    Hi, I'm Abrar Ikramaputra
-                  </LetterFx>
-                </span>
-              </Heading>
-              <Text size="l" color="medium">
-                Full Stack Developer & Designer
-              </Text>
-              <Flex gap="m">
-                <SocialButton
-                  href="https://github.com/0537ch"
-                  icon="github"
-                  label="GitHub"
-                />
-                <SocialButton
-                  href="mailto:abrarikramaputra@gmail.com"
-                  icon="mail"
-                  label="Email"
-                />
-                <SocialButton
-                  href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
-                  icon="linkedin"
-                  label="LinkedIn"
-                />
-              </Flex>
-              <Button
-                id="contactMe"
-                href="#contact"
-                variant="secondary">
-                <Flex alignItems="center">
-                  Get in touch
-                  <Arrow trigger="#contactMe"/>
+            direction="column"
+            fillWidth
+            gap="24">
+            <Heading
+              wrap="balance"
+              variant="display-strong-s">
+              <span className="font-code">
+                <LetterFx trigger="instant">
+                  Hi, I'm Abrar Ikramaputra
+                </LetterFx>
+              </span>
+            </Heading>
+            
+            <Flex 
+              mobileDirection="column"
+              gap="24"
+              alignItems="start">
+              <Flex
+                direction="column"
+                gap="24">
+                <Text size="l" color="medium">
+                  Full Stack Developer 
+                </Text>
+                <Flex gap="m">
+                  <SocialButton
+                    href="https://github.com/0537ch"
+                    icon="github"
+                    label="GitHub"
+                  />
+                  <SocialButton
+                    href="mailto:abrarikramaputra@gmail.com"
+                    icon="mail"
+                    label="Email"
+                  />
+                  <SocialButton
+                    href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
+                    icon="linkedin"
+                    label="LinkedIn"
+                  />
                 </Flex>
-              </Button>
+                <Flex 
+                  gap="xl" 
+                  alignItems="center" 
+                  justifyContent="space-between"
+                  fillWidth>
+                  <Button
+                    id="contactMe"
+                    href="#contact"
+                    variant="secondary">
+                    <Flex alignItems="center">
+                      Get in touch
+                      <Arrow trigger="#contactMe"/>
+                    </Flex>
+                  </Button>
+                  <div className="w-[400px] h-[300px] pointer-events-auto">
+                    <TechStack3D />
+                  </div>
+                </Flex>
+              </Flex>
             </Flex>
           </Flex>
-
           {/* Skills Section */}
           <Flex
             id="skills"
@@ -152,9 +184,9 @@ export default function Home() {
                   <Text color="medium" 
                     className={styles.techTag}>SCSS</Text>
                   <Text color="medium" 
-                    className={styles.techTag}>Redux</Text>
+                    className={styles.techTag}>Vue.js</Text>
                   <Text color="medium" 
-                    className={styles.techTag}>React Query</Text>
+                    className={styles.techTag}>Laravel</Text>
                 </div>
               </div>
               <div>
@@ -171,7 +203,7 @@ export default function Home() {
                   <Text color="medium" 
                     className={styles.techTag}>Express</Text>
                   <Text color="medium" 
-                    className={styles.techTag}>NestJS</Text>
+                    className={styles.techTag}>Python</Text>
                   <Text color="medium" 
                     className={styles.techTag}>MongoDB</Text>
                   <Text color="medium" 
@@ -179,7 +211,7 @@ export default function Home() {
                   <Text color="medium" 
                     className={styles.techTag}>REST API</Text>
                   <Text color="medium" 
-                    className={styles.techTag}>GraphQL</Text>
+                    className={styles.techTag}>PHP</Text>
                 </div>
               </div>
               <div>
@@ -199,8 +231,6 @@ export default function Home() {
                     className={styles.techTag}>AWS</Text>
                   <Text color="medium" 
                     className={styles.techTag}>Figma</Text>
-                  <Text color="medium" 
-                    className={styles.techTag}>Adobe XD</Text>
                   <Text color="medium" 
                     className={styles.techTag}>UI/UX</Text>
                   <Text color="medium" 

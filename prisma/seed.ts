@@ -3,6 +3,11 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // Cleanup existing data in correct order (child tables first)
+  await prisma.technology.deleteMany({});
+  await prisma.project.deleteMany({});
+  await prisma.category.deleteMany({});
+
   // Create categories
   const frontend = await prisma.category.create({
     data: {
@@ -61,10 +66,9 @@ async function main() {
   // Create projects
   const onlineShop = await prisma.project.create({
     data: {
-      title: 'Online Shop LRV',
-      description: 'E-commerce platform built with Laravel, featuring product management, shopping cart, and secure payment integration. Includes user authentication, admin dashboard, and order tracking.',
-      year: 2023,
-      image: 'https://raw.githubusercontent.com/0537ch/onlineshoplrv/main/screenshot.png',
+      title: 'Online Shop Laravel',
+      description: 'E-commerce platform built with Laravel & Filament, featuring product management, shopping cart, and secure payment integration. Includes user authentication, admin dashboard, and order tracking.',
+      year: 2024,
       demoUrl: 'https://onlineshop-lrv.vercel.app',
       githubUrl: 'https://github.com/0537ch/onlineshoplrv',
       featured: true,
@@ -78,12 +82,27 @@ async function main() {
     data: {
       title: 'Academix',
       description: 'Academic management system built with MERN Stack (MongoDB, Express.js, React, Node.js). Features include student management, course scheduling, grade tracking, and attendance monitoring with real-time updates.',
-      year: 2023,
+      year: 2024,
       image: null,
       demoUrl: null,
       githubUrl: 'https://github.com/0537ch/academix',
       featured: true,
       order: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+  });
+
+  const weatherdb = await prisma.project.create({
+    data: {
+      title: 'Weather Dashboard',
+      description: 'Weather Dashboard with Interactive UI using python, flask, and html. Features include real-time weather updates, user-friendly interface, and responsive design.',
+      year: 2024,
+      image: 'null',
+      demoUrl: 'null',
+      githubUrl: 'https://github.com/0537ch/pyweather',
+      featured: true,
+      order: 3,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -95,10 +114,9 @@ async function main() {
       description: 'Modern portfolio website built with Next.js, featuring a beautiful UI with Framer Motion animations, project showcase, and contact form. Includes server-side rendering and PostgreSQL database.',
       year: 2024,
       image: null,
-      demoUrl: 'https://pfolio-0537ch.vercel.app',
-      githubUrl: 'https://github.com/0537ch/pfolio',
+      demoUrl: 'https://abrarikr.vercel.app',
       featured: true,
-      order: 3,
+      order: 4,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -106,18 +124,14 @@ async function main() {
 
   await prisma.project.create({
     data: {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates. Includes features like task assignment, due dates, and team collaboration.',
-      year: 2023,
+      title: 'PDF to PNG',
+      description: 'a simple converter from pdf to png using python and flask',
+      githubUrl: 'https://github.com/0537ch/pdftopng',
+      year: 2024,
       featured: true,
-      order: 4,
-      technologies: {
-        connect: [
-          { id: react.id },
-          { id: nodejs.id },
-          { id: postgresql.id },
-        ],
-      },
+      order: 5,
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
   });
 

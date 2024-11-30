@@ -1,0 +1,24 @@
+{
+  "glyphs": {
+    "0": {"ha": 600, "x_min": 0, "x_max": 600, "o": "M 300 -10 Q 150 -10 75 65 Q 0 140 0 290 Q 0 440 75 515 Q 150 590 300 590 Q 450 590 525 515 Q 600 440 600 290 Q 600 140 525 65 Q 450 -10 300 -10 Z M 300 50 Q 425 50 487.5 112.5 Q 550 175 550 290 Q 550 405 487.5 467.5 Q 425 530 300 530 Q 175 530 112.5 467.5 Q 50 405 50 290 Q 50 175 112.5 112.5 Q 175 50 300 50 Z"},
+    "1": {"ha": 600, "x_min": 0, "x_max": 600, "o": "M 350 0 L 350 500 L 50 500 L 50 560 L 420 560 L 420 0 L 350 0 Z"},
+    "2": {"ha": 600, "x_min": 0, "x_max": 600, "o": "M 50 0 L 50 60 L 300 310 Q 375 385 412.5 432.5 Q 450 480 450 530 Q 450 580 412.5 617.5 Q 375 655 300 655 Q 225 655 187.5 617.5 Q 150 580 150 530 L 80 530 Q 80 605 132.5 657.5 Q 185 710 300 710 Q 415 710 467.5 657.5 Q 520 605 520 530 Q 520 455 467.5 402.5 Q 415 350 300 235 L 100 35 L 550 35 L 550 0 L 50 0 Z"}
+  },
+  "familyName": "JetBrains Mono",
+  "ascender": 800,
+  "descender": -200,
+  "underlinePosition": -100,
+  "underlineThickness": 50,
+  "boundingBox": {"yMin": -200, "xMin": 0, "yMax": 800, "xMax": 600},
+  "resolution": 1000,
+  "original_font_information": {
+    "format": 0,
+    "copyright": "Copyright 2020 JetBrains s.r.o.",
+    "fontFamily": "JetBrains Mono",
+    "fontSubfamily": "Regular",
+    "uniqueID": "JetBrains Mono Regular",
+    "fullName": "JetBrains Mono Regular",
+    "version": "Version 2.225",
+    "postScriptName": "JetBrainsMono-Regular"
+  }
+}
