@@ -112,7 +112,7 @@ export default function Home() {
                 direction="column"
                 gap="24">
                 <Text size="l" color="medium">
-                  Full Stack Developer 
+                  Aspiring Cybersecurity Analyst and AI engineer
                 </Text>
                 <Flex gap="m">
                   <SocialButton
@@ -126,7 +126,7 @@ export default function Home() {
                     label="Email"
                   />
                   <SocialButton
-                    href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
+                    href="https://www.linkedin.com/in/abrar-ikramaputra/"
                     icon="linkedin"
                     label="LinkedIn"
                   />
@@ -351,7 +351,7 @@ export default function Home() {
                 label="Email"
               />
               <SocialButton
-                href="https://www.linkedin.com/in/abrar-ikramaputra-b65051221/"
+                href="https://www.linkedin.com/in/abrar-ikramaputra/"
                 icon="linkedin"
                 label="LinkedIn"
               />
